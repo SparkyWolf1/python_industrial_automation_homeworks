@@ -69,7 +69,13 @@ df = pandas.read_csv(
     dtype=header_data)
 df.index = pandas.to_datetime(df['Timestamp'], format='ISO8601')
 
-plot_frame = df[['Timestamp', 'Temperature_T0', 'Temperature_J1']].copy()
+plot_temperature = df[['Temperature_T0', 'Temperature_J1', 'Temperature_J2',
+                    'Temperature_J3', 'Temperature_J4', 'Temperature_J5']
+                    ].copy()
+
+plot_current = df[['Current_J0', 'Current_J1', 'Current_J2',
+                    'Current_J3', 'Current_J4', 'Current_J5']
+                    ].copy()
 
 # plot parameters
 plot_title = 'Joint temperatures in time'
@@ -77,19 +83,25 @@ x_label = 'Timestamp'
 y_label = 'Joint temperatures [°C]'
 
 # create plot
-fig = plotly.express.line(data_frame=plot_frame,
+fig = plotly.express.line(data_frame=plot_temperature,
                           title=plot_title,
-                          animation_frame='Temperature_T0',
                           labels={'x': x_label,
                                   'y': y_label})
 
 # create dash app
 app = Dash()
 app.layout = [
-    html.Div(
+    html.Div([
+        html.H2('Dynamic dash app example'),
+        html.Div([
+            html.P('Select data:'),
+            dcc.Dropdown(
+                options=['Temperature', 'Current', 'Speed'],
+                value='Temperature')
+            ], style={'padding': 10, 'flex': 1, 'width': 150}),
         dcc.Graph(figure=fig)
-    )
+    ])
 ]
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
