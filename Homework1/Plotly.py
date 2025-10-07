@@ -31,7 +31,6 @@
 
 import pandas
 import plotly.express
-from dash import Dash, html, dash_table, dcc, callback, Output, Input
 
 # Create program constants
 DATA_PATH = "DatasetsTesting\\Robot_Data\\dataset_02052023.csv"

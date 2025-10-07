@@ -31,7 +31,7 @@
 
 import pandas
 import plotly.express
-from dash import Dash, html, dash_table, dcc, callback, Output, Input
+from dash import Dash, html, dcc, callback, Output, Input
 
 # Create program constants
 DATA_PATH = "DatasetsTesting\\Robot_Data\\dataset_02052023.csv"
@@ -69,7 +69,7 @@ df = pandas.read_csv(
     dtype=header_data)
 df.index = pandas.to_datetime(df['Timestamp'], format='ISO8601')
 
-x_data
+plot_frame = df[['Timestamp', 'Temperature_T0', 'Temperature_J1']].copy()
 
 # plot parameters
 plot_title = 'Joint temperatures in time'
@@ -77,17 +77,19 @@ x_label = 'Timestamp'
 y_label = 'Joint temperatures [°C]'
 
 # create plot
-fig = plotly.express.line(x=df['Timestamp'],
-                          y=[df['Temperature_T0'],
-                             df['Temperature_J1'],
-                             df['Temperature_J2'],
-                             df['Temperature_J3'],
-                             df['Temperature_J4'],
-                             df['Temperature_J5']],
-                            title=plot_title,
-                            labels={'x': x_label,
-                                    'y': y_label})
+fig = plotly.express.line(data_frame=plot_frame,
+                          title=plot_title,
+                          animation_frame='Temperature_T0',
+                          labels={'x': x_label,
+                                  'y': y_label})
 
+# create dash app
+app = Dash()
+app.layout = [
+    html.Div(
+        dcc.Graph(figure=fig)
+    )
+]
 
 if __name__ == '__main__':
-    fig.show()
+    app.run()
