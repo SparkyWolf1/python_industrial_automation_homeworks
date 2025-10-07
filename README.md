@@ -1,6 +1,8 @@
 # Domácí úkoly pro Python v industriální automatizaci
 ## Homework 1
-Zobrazení grafu pomocí modulu plotly. ~~a rozpohybování pomocí modulu dash~~.
+Zobrazení grafu pomocí modulu plotly. 
+### Dash Aplikace
+Dash aplikace prozatím využívá integrovaný dataset z plotly.express. Mnou zvolený dataset je trochu víc problémový a csv docela chybové bez úprav.
 
 <b>Dataset</b>: Robotic arm UR3 controller data from UC Irvine<br>
 <b>URL</b>: https://archive.ics.uci.edu/dataset/963/ur3+cobotops<br>
