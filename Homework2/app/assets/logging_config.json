@@ -1,0 +1,52 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "standard": {
+            "format": "[%(levelname)s] %(name)s: %(message)s"
+        },
+        "detailed": {
+            "format": "[%(levelname)s|%(module)s|L%(lineno)d] %(asctime)s: %(message)s",
+            "datefmt": "%Y-%m-%dT%H:%M:%S%z"
+        },
+        "json": {
+            "()": "core.logger.JsonFormatter",
+            "fmt_keys": {
+                "level": "levelname",
+                "message": "message",
+                "timestamp": "timestamp",
+                "logger": "name",
+                "module": "module",
+                "function": "funcName",
+                "line": "lineno",
+                "thread_name": "threadName"
+            }
+        }
+    },
+    "handlers": {
+        "stderr": {
+            "class": "logging.StreamHandler",
+            "level": "WARNING",
+            "formatter": "standard",
+            "stream": "ext://sys.stderr"
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "json",
+            "filename": "Homework2/logs/app.log.jsonl",
+            "maxBytes": 1000000,
+            "backupCount": 5
+        }
+    },
+    "loggers": {
+        "": {
+            "handlers": [
+                "stderr",
+                "file"
+            ],
+            "level": "DEBUG",
+            "propagate": false
+        }
+    }
+}

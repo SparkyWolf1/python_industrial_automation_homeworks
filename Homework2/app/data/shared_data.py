@@ -1,0 +1,5 @@
+regions: set[str] = set()
+districts: set[str] = set()
+cities: list[dict] = list()
+graphing_data: list[dict] = list()
+searched_cities: list[dict] = list()

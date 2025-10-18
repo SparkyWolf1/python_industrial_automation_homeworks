@@ -1,0 +1,26 @@
+.head-bar {
+    background-color: #FFECB3;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 5rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+div.head-bar img {
+    margin-left: 1%;
+    margin-right: 10%;
+}
+
+.left-panel {
+    background-color: #FFECB3;
+    height: 100%;
+    width: 15%;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
