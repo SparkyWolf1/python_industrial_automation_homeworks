@@ -29,7 +29,7 @@ def render(App: dash.Dash, data) -> dash.html.Div:
     )
     map_chart.update_layout(
         mapbox_style="open-street-map",
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        margin={"r": 5, "t": 5, "l": 5, "b": 5},
         hoverlabel=dict(
             bgcolor="white",
             font_size=14

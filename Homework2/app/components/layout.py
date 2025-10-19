@@ -5,6 +5,7 @@ import dash
 from components import (
     dropdown,
     radio_item,
+    button,
     scattermap,
 )
 import data.shared_data as shared_data
@@ -28,9 +29,12 @@ def create_layout(App: dash.Dash, data: dict | None) -> dash.html.Div:
                     dash.html.Div(
                         className="left-panel",
                         children=[
-                            dash.html.P("Zobrazení teplot:"),
-                            radio_item.render(App),
-                            dropdown.render(App, list(shared_data.regions))
+                            # Not implemented functions yet
+                            # dash.html.P("Zobrazení teplot:"),
+                            # radio_item.render(App),
+                            # dropdown.render(App, list(shared_data.regions)),
+                            button.render(App, "Ulož do CSV")
+
                         ]
                     ),
                     scattermap.render(App, shared_data.graphing_data)

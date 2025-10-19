@@ -23,6 +23,7 @@ from data import constants
 from data import shared_data
 from models import current_weather
 import data.request
+import data.functions
 import core.logger
 import core.config
 import components.layout
@@ -52,7 +53,6 @@ def main() -> None:
     # create dict for cities with status "Město", "Hlavní město"
     # or "Statutární město"
     # TODO: Refactor to posibly use dataclasses
-    # TODO: Add type hints
     # TODO: make separte module and functions for data processing
     for city in city_list:
         shared_data.regions.add(city['Název Kraje (VÚSC)'])
@@ -63,7 +63,13 @@ def main() -> None:
             city['Status obce'] == 'Statutární město'
         ):
             shared_data.cities.append(city)
-            # shared_data.cities[city['Název Obce']] = city
+        # !Do NOT uncomment this call -> bug with endless loop...
+        # shared_data.cities = data.functions.filter_data(
+        #     data=city_list,
+        #     keys=['Město','Hlavní město','Statutární město'],
+        #     search_col='Status obce'
+        # )
+
     # print(shared_data.cities)
     # log some information about city list
     core.logger.logger.info(
