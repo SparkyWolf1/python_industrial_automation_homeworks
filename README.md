@@ -25,7 +25,7 @@ Celé prostředí se skládá ze 3 container aplikací.
 
 ### Příkazy v REST API
 Volání se provádí přes port <b>7878</b>
-```http
+```
 # základní volání
 localhost:7878/
 
