@@ -35,9 +35,11 @@ localhost:7878/status
 # vrácení info o db
 localhost:7878/status/db
 
+{ Zatím nefunguje dobře query... vše vrací 404
 # vrácení dat ze zvoleného řádku
 localhost:7878/robot_data/row=<id>
 
 # vrátí veškerá data z db
 localhost:7878/robot_data/all
+}
 ```
