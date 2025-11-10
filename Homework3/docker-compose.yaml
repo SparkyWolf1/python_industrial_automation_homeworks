@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  hw-db:
+    image: mongo:latest
+    container_name: hw-db
+    ports:
+      - "27017:27017"
+    networks:
+      - hw-network
+  
+  hw-populate:
+    build: db_populate_app
+    image: db_populate_app:latest
+    container_name: hw_populate_db
+    depends_on:
+      - hw-db
+    environment:
+      - DB_HOST=hw-db
+      - DB_PORT=27017
+      - DB_NAME=robot_db
+    networks:
+      - hw-network
+
+  hw-rest-api:
+    build: db_rest_api_server
+    image: db_rest_api_server:latest
+    container_name: hw_rest_api
+    depends_on:
+      - hw-db
+      - hw-populate
+    environment:
+      - DB_HOST=hw-db
+      - DB_PORT=27017
+      - DB_NAME=robot_db
+    ports:
+      - "7878:7878"
+    networks:
+      - hw-network
+
+networks:
+  hw-network:
+    driver: bridge
